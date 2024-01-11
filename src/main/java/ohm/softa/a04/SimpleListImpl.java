@@ -22,14 +22,14 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 	public void add(T item){
 		/* special case empty list */
 		if(head == null){
-			head = new ListElement(item);
+			head = new ListElement<T>(item);
 		}else {
 			/* any other list length */
-			ListElement current = head;
+			ListElement<T> current = head;
 			while (current.getNext() != null){
 				current = current.getNext();
 			}
-			current.setNext(new ListElement(item));
+			current.setNext(new ListElement<T>(item));
 		}
 		size++;
 	}
@@ -61,14 +61,14 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 	 */
 	@Override
 	public Iterator<T> iterator() {
-		return new SimpleIterator<T>();
+		return new SimpleIterator();
 	}
 
 	/**
 	 * Helper class which implements the Iterator interface
 	 * Has to be non static because otherwise it could not access the head of the list
 	 */
-	private class SimpleIterator<T> implements Iterator<T> {
+	private class SimpleIterator implements Iterator<T> {
 
 		private ListElement<T> current = head;
 
